@@ -12,17 +12,17 @@ var yaw: float = 0.0      # Karakterin Y ekseni rotasyonu (sağa/sola bakma)
 var pitch: float = 0.0    # Kameranın X ekseni rotasyonu (yukarı/aşağı bakma)
 
 # Kamera shake ayarları
-@export var shake_base_amount: float = 0.003    # Dururken çok hafif titreme
-@export var shake_max_amount: float = 0.03      # Koşarken max titreme
-@export var shake_speed: float = 8.0
-@export var max_tilt_degrees: float = 5.0       # Sağa sola yatma miktarı
-@export var max_shake_speed: float = 7.0        # Bu hızda shake maksimum olsun
+@export var shake_base_amount: float = 0.002    # Dururken çok hafif titreme
+@export var shake_max_amount: float = 0.002      # Koşarken max titreme
+@export var shake_speed: float = 9.0
+@export var max_tilt_degrees: float = 1.0       # Sağa sola yatma miktarı
+@export var max_shake_speed: float = 9.0        # Bu hızda shake maksimum olsun
 
 var _shake_time: float = 0.0
 
 func _ready() -> void:
 	if cam:
-		cam.fov = 110.0  # Geniş açı (GoPro hissi)
+		cam.fov = 130.0  # Geniş açı (GoPro hissi)
 	# Başlangıç rotasyonunu kaydet
 	yaw = rotation.y
 	pitch = cam.rotation.x

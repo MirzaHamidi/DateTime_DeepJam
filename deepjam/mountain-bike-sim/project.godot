@@ -24,6 +24,15 @@ window/size/viewport_height=1080
 
 project/assembly_name="MountainBikeSim"
 
+[file_customization]
+
+folder_colors={
+"res://Assets/": "red",
+"res://Scenes/": "blue",
+"res://Scripts/": "green",
+"res://Shaders/": "orange"
+}
+
 [input]
 
 ui_left={

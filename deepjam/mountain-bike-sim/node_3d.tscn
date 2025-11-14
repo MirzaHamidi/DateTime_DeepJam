@@ -1,10 +1,7 @@
-[gd_scene load_steps=19 format=3 uid="uid://bpugp2m5stif0"]
+[gd_scene load_steps=14 format=3 uid="uid://bpugp2m5stif0"]
 
 [ext_resource type="Texture2D" uid="uid://bl5bx0i74k1te" path="res://Assets/Grid-PNG-Image-HD.png" id="1_a202f"]
-[ext_resource type="PackedScene" uid="uid://dm0t3ocby0km7" path="res://Scenes/player.tscn" id="2_jka67"]
-[ext_resource type="Texture2D" uid="uid://dvu3e3b1wk0sh" path="res://Assets/z bike-game-ready/textures/Bike1_Bake_mat_BaseColor.png" id="2_r3fl7"]
-[ext_resource type="ArrayMesh" uid="uid://cg4u6pmanq8jf" path="res://Assets/z bike-game-ready/textures/Back.res" id="3_jka67"]
-[ext_resource type="ArrayMesh" uid="uid://df57qxuuc18kh" path="res://Assets/z bike-game-ready/textures/Front.res" id="4_i5arm"]
+[ext_resource type="PackedScene" uid="uid://1k3r5aub3286" path="res://bike.tscn" id="2_noarx"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jka67"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -41,12 +38,6 @@ size = Vector2(32, 32)
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_wc5p8"]
 data = PackedVector3Array(16, 0, 16, -16, 0, 16, 16, 0, -16, -16, 0, 16, -16, 0, -16, 16, 0, -16)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wc5p8"]
-albedo_texture = ExtResource("2_r3fl7")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jsk3o"]
-albedo_texture = ExtResource("2_r3fl7")
-
 [node name="TestScene" type="Node3D"]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -56,11 +47,8 @@ environment = SubResource("Environment_wc5p8")
 transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
 shadow_enabled = true
 
-[node name="Player" parent="." instance=ExtResource("2_jka67")]
-transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -2.3862672, 0.20058618, 6.1898437)
-
 [node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
-transform = Transform3D(5.0195847, 0, 0, 0, 0.7258579, 0, 0, 0, 0.9965086, -1.4288093, 0.56351507, 0)
+transform = Transform3D(7.87333, 0, 0, 0, 0.7258579, 0, 0, 0, 3.982926, 2.2540822, 0.56351507, -2.867464)
 material_override = SubResource("StandardMaterial3D_noarx")
 mesh = SubResource("PrismMesh_a0tk4")
 skeleton = NodePath("")
@@ -71,7 +59,7 @@ skeleton = NodePath("")
 shape = SubResource("ConcavePolygonShape3D_jka67")
 
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
-transform = Transform3D(1.49, 0, 0, 0, -5.070521e-08, -0.175, 0, 1.16, -7.649493e-09, 0, 0.2880862, 4.9153748)
+transform = Transform3D(1.49, 0, 0, 0, -5.070521e-08, -0.175, 0, 1.16, -7.649493e-09, 0, 0.2880862, 5.867505)
 mesh = SubResource("CylinderMesh_r3fl7")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="MeshInstance3D2"]
@@ -91,17 +79,4 @@ skeleton = NodePath("")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="floor/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_wc5p8")
 
-[node name="bike" type="Node3D" parent="."]
-transform = Transform3D(2.9802322e-08, 0, 1.4849999, 0, 1.485, 0, -1.4849999, 0, 2.9802322e-08, 0, 0.32928532, 7.645511)
-
-[node name="Back" type="MeshInstance3D" parent="bike"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.475, 0)
-material_override = SubResource("StandardMaterial3D_wc5p8")
-mesh = ExtResource("3_jka67")
-skeleton = NodePath("../..")
-
-[node name="Front" type="MeshInstance3D" parent="bike"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.83339876, 0.475, 0)
-material_override = SubResource("StandardMaterial3D_jsk3o")
-mesh = ExtResource("4_i5arm")
-skeleton = NodePath("../..")
+[node name="Bike" parent="." instance=ExtResource("2_noarx")]

@@ -217,3 +217,4 @@ func _toggle_bike_attachment() -> void:
 		bike.scale = bike_current_scale
 		_toggle_collisions(bike, true)
 		bike_is_child = true
+####################

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://caagiuis1uj1l"]
 
-[ext_resource type="PackedScene" uid="uid://bvl2xd3xltp4b" path="res://Assets/bike-game-ready/textures/Bike.fbx" id="1_8f0co"]
-[ext_resource type="Texture2D" uid="uid://bnwr4eqg585ti" path="res://Assets/bike-game-ready/textures/Bike1_Bake_mat_Metallic.png" id="2_hqb8h"]
+[ext_resource type="PackedScene" uid="uid://bvl2xd3xltp4b" path="res://Assets/z bike-game-ready/textures/Bike.fbx" id="1_8f0co"]
+[ext_resource type="Texture2D" uid="uid://bnwr4eqg585ti" path="res://Assets/z bike-game-ready/textures/Bike1_Bake_mat_Metallic.png" id="2_hqb8h"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_udqgf"]
 albedo_texture = ExtResource("2_hqb8h")

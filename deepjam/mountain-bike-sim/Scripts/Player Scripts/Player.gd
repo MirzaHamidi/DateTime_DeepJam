@@ -6,6 +6,10 @@ const JUMP_VELOCITY: float = 4.5
 @onready var cam: Camera3D = $Camera3D
 @onready var anim_player: AnimationPlayer = $"Treadmill Running/AnimationPlayer"
 
+# Bike referansı
+var bike: Node3D = null
+var bike_is_child: bool = false
+
 # Mouse look
 @export var mouse_sensitivity: float = 0.002
 var yaw: float = 0.0      # Karakterin Y ekseni rotasyonu (sağa/sola bakma)
@@ -28,6 +32,11 @@ func _ready() -> void:
 	pitch = cam.rotation.x
 	# Mouse'u ekrana kilitliyoruz
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	# Bike referansını al (main scene'den)
+	bike = get_node_or_null("../bike")
+	if bike:
+		# Bike'ın başlangıçta child olup olmadığını kontrol et
+		bike_is_child = (bike.get_parent() == self)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -38,6 +47,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
+		return
+	
+	# E tuşu -> bike'ı player'ın child'ı yap/iptal et
+	if event is InputEventKey and event.pressed and event.keycode == KEY_E:
+		_toggle_bike_attachment()
 		return
 
 	# Mouse movement only when cursor is captured
@@ -117,3 +131,42 @@ func _update_camera_shake(delta: float) -> void:
 	# Y eksenine dokunmuyoruz, bakış yönün bozulmasın
 	cam.rotation.y = 0.0
 	cam.rotation.z = tilt
+
+func _toggle_bike_attachment() -> void:
+	if bike == null:
+		return
+	
+	if bike_is_child:
+		# Bike'ı player'dan ayır ve main scene'e geri ekle
+		var main_scene = get_tree().current_scene
+		var bike_global_pos = bike.global_position
+		var bike_global_rotation = bike.global_rotation
+		var bike_global_scale = bike.global_scale
+		
+		# Bike'ı player'dan çıkar
+		remove_child(bike)
+		# Main scene'e ekle
+		main_scene.add_child(bike)
+		# Global pozisyonu koru
+		bike.global_position = bike_global_pos
+		bike.global_rotation = bike_global_rotation
+		bike.global_scale = bike_global_scale
+		
+		bike_is_child = false
+	else:
+		# Bike'ı player'ın child'ı yap
+		var main_scene = get_tree().current_scene
+		var bike_global_pos = bike.global_position
+		var bike_global_rotation = bike.global_rotation
+		var bike_global_scale = bike.global_scale
+		
+		# Bike'ı main scene'den çıkar
+		main_scene.remove_child(bike)
+		# Player'a ekle
+		add_child(bike)
+		# Global pozisyonu koru (Godot otomatik olarak local transform'a çevirir)
+		bike.global_position = bike_global_pos
+		bike.global_rotation = bike_global_rotation
+		bike.global_scale = bike_global_scale
+		
+		bike_is_child = true

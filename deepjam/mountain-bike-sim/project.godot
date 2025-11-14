@@ -13,7 +13,7 @@ config_version=5
 config/name="MountainBikeSim"
 run/main_scene="uid://cpfv2ytuftuff"
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Assets/2D/icon.svg"
 
 [display]
 
@@ -28,6 +28,8 @@ project/assembly_name="MountainBikeSim"
 
 folder_colors={
 "res://Assets/": "red",
+"res://Assets/2D/": "teal",
+"res://Assets/Textures/": "yellow",
 "res://Scenes/": "blue",
 "res://Scripts/": "green",
 "res://Shaders/": "orange"
